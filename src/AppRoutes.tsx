@@ -3,9 +3,9 @@ import Layout from "./layouts/Layout";
 
 import Dashboard from "./pages/Dashboard";
 import PointOfSale from "./pages/PointOfSale";
-import AllProducts from "./pages/AllProducts";
 import LoginPage from "./pages/LoginPage";
 import UserProfilePage from "./pages/UserProfilePage";
+import ProductsPage from "./pages/ProductsPage";
 
 export default function AppRoutes() {
   return (
@@ -31,7 +31,7 @@ export default function AppRoutes() {
           path="/products"
           element={
             <Layout>
-              <AllProducts />
+              <ProductsPage />
             </Layout>
           }
         />
