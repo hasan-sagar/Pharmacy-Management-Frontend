@@ -5,6 +5,7 @@ import Dashboard from "./pages/Dashboard";
 import PointOfSale from "./pages/PointOfSale";
 import AllProducts from "./pages/AllProducts";
 import LoginPage from "./pages/LoginPage";
+import UserProfilePage from "./pages/UserProfilePage";
 
 export default function AppRoutes() {
   return (
@@ -31,6 +32,14 @@ export default function AppRoutes() {
           element={
             <Layout>
               <AllProducts />
+            </Layout>
+          }
+        />
+        <Route
+          path="/users"
+          element={
+            <Layout>
+              <UserProfilePage />
             </Layout>
           }
         />

@@ -27,6 +27,7 @@ import {
   CollapsibleTrigger,
   CollapsibleContent,
 } from "@/components/ui/collapsible";
+import { NavLink } from "react-router-dom";
 
 export default function MobileSidebar() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -171,10 +172,12 @@ export default function MobileSidebar() {
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>My Account</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Settings</DropdownMenuItem>
-            <DropdownMenuItem>Support</DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>Logout</DropdownMenuItem>
+            <DropdownMenuItem className="cursor-pointer">
+              <NavLink to="/users">Settings</NavLink>
+            </DropdownMenuItem>
+            <DropdownMenuItem className="cursor-pointer">
+              Logout
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </header>

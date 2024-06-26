@@ -1,9 +1,11 @@
+import { UserType } from "@/types/user-type";
 import axios from "axios";
 import { useMutation, useQuery } from "react-query";
 import { toast } from "sonner";
 
 const apiBaseUrl = import.meta.env.VITE_API_BASE_URL + "/api/v1";
 
+//create new user or login hook
 export const useCreateUserHook = () => {
   //create user/login api
   const createUserRequest = async (token: string) => {
@@ -51,6 +53,7 @@ export const useCreateUserHook = () => {
   };
 };
 
+//check auth jwt
 export const useCheckAuthHook = () => {
   const getAuthRequest = async () => {
     const response = await axios.get(`${apiBaseUrl}`);
@@ -65,6 +68,35 @@ export const useCheckAuthHook = () => {
 
   return {
     currentAuth,
+    isLoading,
+  };
+};
+
+//get user profile hook
+export const userGetUserProfileHook = () => {
+  const getUserRequest = async (): Promise<UserType> => {
+    const response = await axios.get(`${apiBaseUrl}/users`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const data = await response.data;
+    return data;
+  };
+
+  const {
+    data: currentUser,
+    isLoading,
+    error,
+  } = useQuery("fetchCurrentUser", getUserRequest);
+
+  if (error) {
+    toast.error(error.toString());
+  }
+
+  return {
+    currentUser,
     isLoading,
   };
 };
