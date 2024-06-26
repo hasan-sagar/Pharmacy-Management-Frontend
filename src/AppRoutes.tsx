@@ -6,6 +6,7 @@ import PointOfSale from "./pages/PointOfSale";
 import LoginPage from "./pages/LoginPage";
 import UserProfilePage from "./pages/UserProfilePage";
 import ProductsPage from "./pages/ProductsPage";
+import CategoryPage from "./pages/CategoryPage";
 
 export default function AppRoutes() {
   return (
@@ -40,6 +41,14 @@ export default function AppRoutes() {
           element={
             <Layout>
               <UserProfilePage />
+            </Layout>
+          }
+        />
+        <Route
+          path="/category"
+          element={
+            <Layout>
+              <CategoryPage />
             </Layout>
           }
         />

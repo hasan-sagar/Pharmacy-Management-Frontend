@@ -63,13 +63,20 @@ export default function Sidebar() {
             <LineChart className="h-4 w-4" />
             Stocks
           </a>
-          <a
-            href="#"
-            className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
+
+          <NavLink
+            to="/category"
+            className={({ isActive, isPending }) =>
+              isPending
+                ? "pending"
+                : isActive
+                ? "flex items-center gap-3 rounded-lg bg-muted px-3 py-2 text-primary transition-all hover:text-primary"
+                : "flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
+            }
           >
             <ListCollapse className="h-4 w-4" />
             Category
-          </a>
+          </NavLink>
           <a
             href="#"
             className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
