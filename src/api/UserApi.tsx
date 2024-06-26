@@ -1,4 +1,5 @@
 import { UserType } from "@/types/user-type";
+import { UserUpdateType } from "@/types/user-update-type";
 import axios from "axios";
 import { useMutation, useQuery } from "react-query";
 import { toast } from "sonner";
@@ -97,6 +98,46 @@ export const userGetUserProfileHook = () => {
 
   return {
     currentUser,
+    isLoading,
+  };
+};
+
+//update user profile hook
+export const useUpdateUserProfileHook = () => {
+  const updateUserRequest = async (formData: UserUpdateType) => {
+    const response = axios.put(
+      `${apiBaseUrl}/users/update`,
+      {
+        name: formData.name,
+        phone: formData.phone,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const data = (await response).data;
+    return data;
+  };
+
+  const {
+    mutateAsync: updateUser,
+    isLoading,
+    isSuccess,
+    error,
+  } = useMutation(updateUserRequest);
+
+  if (error) {
+    toast.error(error.toString());
+  }
+
+  if (isSuccess) {
+    toast.success("User profile updated success");
+  }
+
+  return {
+    updateUser,
     isLoading,
   };
 };

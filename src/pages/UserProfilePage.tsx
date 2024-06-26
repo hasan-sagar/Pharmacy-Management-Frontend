@@ -1,9 +1,13 @@
-import { userGetUserProfileHook } from "@/api/UserApi";
+import {
+  useUpdateUserProfileHook,
+  userGetUserProfileHook,
+} from "@/api/UserApi";
 import UserProfileForm from "@/components/forms/UserProfileForm";
 import LoadSpinner from "@/components/shared/LoadSpinner";
 
 export default function UserProfilePage() {
   const { currentUser, isLoading } = userGetUserProfileHook();
+  const { updateUser, isLoading: isUpdateLoading } = useUpdateUserProfileHook();
 
   if (isLoading) {
     return <LoadSpinner />;
@@ -14,7 +18,11 @@ export default function UserProfilePage() {
   }
   return (
     <>
-      <UserProfileForm currentUser={currentUser} />
+      <UserProfileForm
+        currentUser={currentUser}
+        isLoading={isUpdateLoading}
+        onSave={updateUser}
+      />
     </>
   );
 }
