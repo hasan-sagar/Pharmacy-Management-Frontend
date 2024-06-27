@@ -7,7 +7,6 @@ import LoginPage from "./pages/LoginPage";
 import UserProfilePage from "./pages/UserProfilePage";
 import ProductsPage from "./pages/ProductsPage";
 import CategoryPage from "./pages/CategoryPage";
-import CategoryEditForm from "./components/forms/CategoryEditForm";
 import CategoryEditpage from "./pages/CategoryEditpage";
 
 export default function AppRoutes() {
