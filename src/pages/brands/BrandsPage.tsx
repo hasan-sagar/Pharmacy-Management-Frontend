@@ -1,37 +1,31 @@
-import { Download, FileUp, Plus } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { CategoryForm } from "@/components/forms/CategoryForm";
-import { useState } from "react";
-import {
-  useCreateCategoryHook,
-  useSearchAndGetCategories,
-} from "@/api/CategoryApi";
-import CateogrySearchBar, {
+import { useCreateBrandsHook, useSearchAndGetBrands } from "@/api/BrandsApi";
+import { BrandsForm } from "@/components/forms/BrandsForm";
+import AllBrands from "@/components/main/brands/AllBrands";
+import BrandsPaginator from "@/components/main/brands/BrandsPaginator";
+import BrandsSearchBar, {
   SearchForm,
-} from "@/components/main/CategorySearchbar";
-import AllCategory from "@/components/main/AllCategory";
-import CategoryPaginator from "@/components/main/CategoryPaginator";
+} from "@/components/main/brands/BrandsSearchBar";
+import { Button } from "@/components/ui/button";
+import { Download, FileUp, Plus } from "lucide-react";
+import { useState } from "react";
 
 //search state values and types
-export type SearchState = {
+export type SearchBrandsState = {
   searchQueryKeywords: string;
   page: number;
 };
 
-export default function CategoryPage() {
-  //create category hook
-  const { createCategory, isLoading } = useCreateCategoryHook();
-
-  //searxh table
-  const [searchState, setSearchState] = useState<SearchState>({
+export default function BrandsPage() {
+  //search table
+  const [searchState, setSearchState] = useState<SearchBrandsState>({
     searchQueryKeywords: "",
     page: 1,
   });
-
-  // search and get category hook
-  const { categoryData, isLoading: isCategoryLoading } =
-    useSearchAndGetCategories(searchState);
-
+  //create brand hook
+  const { createBrands, isLoading } = useCreateBrandsHook();
+  //searych get brands hook
+  const { brandsData, isLoading: isBrandsSearchLoading } =
+    useSearchAndGetBrands(searchState);
   //modal on
   const [isOpen, setIsOpen] = useState(false);
 
@@ -59,7 +53,7 @@ export default function CategoryPage() {
   return (
     <main className="flex flex-col gap-4 p-4 lg:gap-6 lg:p-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-lg font-semibold md:text-2xl">All Categories</h1>
+        <h1 className="text-lg font-semibold md:text-2xl">All Brands</h1>
         <div className="gap-1 flex">
           <Button size={"sm"} variant={"secondary"}>
             <FileUp className="w-5 h-5" />
@@ -77,23 +71,19 @@ export default function CategoryPage() {
         </div>
       </div>
       <div className="flex flex-col gap-5">
-        <CateogrySearchBar
+        <BrandsSearchBar
           onSubmit={setSearchQuery}
-          placeHolder="Search by category name"
+          placeHolder="Search by brand name"
         />
-        <AllCategory
-          categoryData={categoryData}
-          isLoading={isCategoryLoading}
-        />
-        <CategoryPaginator
+        <AllBrands brandsData={brandsData} isLoading={isBrandsSearchLoading} />
+        <BrandsPaginator
           onPageChange={setPage}
-          page={categoryData?.pagination.page}
-          pages={categoryData?.pagination.pages}
+          page={brandsData?.pagination.page}
+          pages={brandsData?.pagination.pages}
         />
-        {/* table contents */}
-        <CategoryForm
+        <BrandsForm
+          onSave={createBrands}
           isLoading={isLoading}
-          onSave={createCategory}
           isOpen={isOpen}
           onOpenChange={handleOpenChange}
         />

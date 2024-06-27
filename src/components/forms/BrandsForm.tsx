@@ -24,23 +24,18 @@ const formSchema = z.object({
   name: z.string().min(1, "Name field required"),
 });
 
-export type CategoryFormData = z.infer<typeof formSchema>;
+export type BrandFormData = z.infer<typeof formSchema>;
 
 type Props = {
   isOpen: boolean;
   onOpenChange: (open: boolean) => void;
-  onSave: (categoryFormData: CategoryFormData) => void;
+  onSave: (brandFormData: BrandFormData) => void;
   isLoading: boolean;
 };
 
-export function CategoryForm({
-  isOpen,
-  onOpenChange,
-  onSave,
-  isLoading,
-}: Props) {
+export function BrandsForm({ isOpen, onOpenChange, isLoading, onSave }: Props) {
   //hook form
-  const form = useForm<CategoryFormData>({
+  const form = useForm<BrandFormData>({
     resolver: zodResolver(formSchema),
   });
 
@@ -48,7 +43,7 @@ export function CategoryForm({
     <Dialog modal open={isOpen} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Create Category</DialogTitle>
+          <DialogTitle>Create Brands</DialogTitle>
         </DialogHeader>
         <Form {...form}>
           <form className="space-y-2" onSubmit={form.handleSubmit(onSave)}>
@@ -58,9 +53,9 @@ export function CategoryForm({
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel htmlFor="name">Category </FormLabel>
+                  <FormLabel htmlFor="name">Brands</FormLabel>
                   <FormControl>
-                    <Input id="name" placeholder="Enter category" {...field} />
+                    <Input id="name" placeholder="Enter brands" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -68,7 +63,7 @@ export function CategoryForm({
             />
             <DialogFooter>
               <Button size={"sm"} type="submit">
-                {isLoading ? "Creating.." : "Submit"}
+                {isLoading ? "Loading.." : "Submit"}
               </Button>
             </DialogFooter>
           </form>

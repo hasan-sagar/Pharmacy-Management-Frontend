@@ -1,12 +1,3 @@
-// import { Input } from "../ui/input";
-
-// export default function CateogrySearchBar() {
-//   return (
-//     <>
-//       <Input placeholder="Search by name" />
-//     </>
-//   );
-// }
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -14,8 +5,8 @@ import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Delete, Search } from "lucide-react";
 
 import { useEffect } from "react";
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
+import { Input } from "../../ui/input";
+import { Button } from "../../ui/button";
 
 const formSchema = z.object({
   searchQueryKeywords: z.string({

@@ -6,8 +6,10 @@ import PointOfSale from "./pages/PointOfSale";
 import LoginPage from "./pages/LoginPage";
 import UserProfilePage from "./pages/UserProfilePage";
 import ProductsPage from "./pages/ProductsPage";
-import CategoryPage from "./pages/CategoryPage";
-import CategoryEditpage from "./pages/CategoryEditpage";
+import CategoryPage from "./pages/category/CategoryPage";
+import CategoryEditpage from "./pages/category/CategoryEditpage";
+import BrandsPage from "./pages/brands/BrandsPage";
+import BrandsEditpage from "./pages/brands/BrandsEditPage";
 
 export default function AppRoutes() {
   return (
@@ -58,6 +60,22 @@ export default function AppRoutes() {
           element={
             <Layout>
               <CategoryEditpage />
+            </Layout>
+          }
+        />
+        <Route
+          path="/brands"
+          element={
+            <Layout>
+              <BrandsPage />
+            </Layout>
+          }
+        />
+        <Route
+          path="/brands/:brandId"
+          element={
+            <Layout>
+              <BrandsEditpage />
             </Layout>
           }
         />

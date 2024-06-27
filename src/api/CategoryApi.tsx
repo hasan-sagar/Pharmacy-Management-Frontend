@@ -1,4 +1,4 @@
-import { SearchState } from "@/pages/CategoryPage";
+import { SearchState } from "@/pages/category/CategoryPage";
 import { CreateCategoryType } from "@/types/create-category-type";
 import axios from "axios";
 import { useMutation, useQuery } from "react-query";

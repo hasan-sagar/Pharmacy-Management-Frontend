@@ -7,7 +7,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { CategoryType } from "@/types/category-type";
-import LoadSpinner from "../shared/LoadSpinner";
+import LoadSpinner from "../../shared/LoadSpinner";
 import { Edit, Trash } from "lucide-react";
 import { useDeleteCategoryHook } from "@/api/CategoryApi";
 import { Link, useNavigate } from "react-router-dom";
