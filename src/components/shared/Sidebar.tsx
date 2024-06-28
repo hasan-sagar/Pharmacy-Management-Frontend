@@ -3,7 +3,6 @@ import {
   ChevronDown,
   Handshake,
   LineChart,
-  ListChecks,
   ListCollapse,
   Package,
   Package2Icon,
@@ -90,21 +89,20 @@ export default function Sidebar() {
             <WalletCards className="h-4 w-4" />
             Brand
           </NavLink>
-          <a
-            href="#"
-            className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
-          >
-            <ListChecks className="h-4 w-4" />
-            Generics
-          </a>
 
-          <a
-            href="#"
-            className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
+          <NavLink
+            to="/suppliers"
+            className={({ isActive, isPending }) =>
+              isPending
+                ? "pending"
+                : isActive
+                ? "flex items-center gap-3 rounded-lg bg-muted px-3 py-2 text-primary transition-all hover:text-primary"
+                : "flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
+            }
           >
             <Handshake className="h-4 w-4" />
             Suppliers
-          </a>
+          </NavLink>
 
           <a
             href="#"

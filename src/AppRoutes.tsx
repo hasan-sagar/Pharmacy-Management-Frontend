@@ -10,6 +10,7 @@ import CategoryPage from "./pages/category/CategoryPage";
 import CategoryEditpage from "./pages/category/CategoryEditpage";
 import BrandsPage from "./pages/brands/BrandsPage";
 import BrandsEditpage from "./pages/brands/BrandsEditPage";
+import SuppliersPage from "./pages/suppliers/SuppliersPage";
 
 export default function AppRoutes() {
   return (
@@ -76,6 +77,14 @@ export default function AppRoutes() {
           element={
             <Layout>
               <BrandsEditpage />
+            </Layout>
+          }
+        />
+        <Route
+          path="/suppliers"
+          element={
+            <Layout>
+              <SuppliersPage />
             </Layout>
           }
         />
