@@ -164,3 +164,89 @@ export const useUpdateSingleProduct = (supplierId: string) => {
     isLoading,
   };
 };
+
+//search and fetch products in stock
+export const useSearchAndGetProductsInStock = (
+  searchState: SearchPurchaseState
+) => {
+  const createSearchRequest = async () => {
+    const params = new URLSearchParams();
+
+    params.set("query", searchState.searchQueryKeywords);
+    params.set("page", searchState.page.toString());
+
+    const response = await axios.get(
+      `${apiBaseUrl}/products/get/stock?${params.toString()}`
+    );
+
+    const data = await response.data;
+    return data;
+  };
+
+  const { data: productsData, isLoading } = useQuery(
+    ["searchAndGetProductsInStock", searchState],
+    createSearchRequest
+  );
+
+  return {
+    productsData,
+    isLoading,
+  };
+};
+
+//search and fetch products out of stock
+export const useSearchAndGetProductsOutOfStock = (
+  searchState: SearchPurchaseState
+) => {
+  const createSearchRequest = async () => {
+    const params = new URLSearchParams();
+
+    params.set("query", searchState.searchQueryKeywords);
+    params.set("page", searchState.page.toString());
+
+    const response = await axios.get(
+      `${apiBaseUrl}/products/get/stock-out?${params.toString()}`
+    );
+
+    const data = await response.data;
+    return data;
+  };
+
+  const { data: productsData, isLoading } = useQuery(
+    ["searchAndGetProductsInStock", searchState],
+    createSearchRequest
+  );
+
+  return {
+    productsData,
+    isLoading,
+  };
+};
+//search and fetch products of expired
+export const useSearchAndGetProductsExpired = (
+  searchState: SearchPurchaseState
+) => {
+  const createSearchRequest = async () => {
+    const params = new URLSearchParams();
+
+    params.set("query", searchState.searchQueryKeywords);
+    params.set("page", searchState.page.toString());
+
+    const response = await axios.get(
+      `${apiBaseUrl}/products/get/expired?${params.toString()}`
+    );
+
+    const data = await response.data;
+    return data;
+  };
+
+  const { data: productsData, isLoading } = useQuery(
+    ["searchAndGetProductsInStock", searchState],
+    createSearchRequest
+  );
+
+  return {
+    productsData,
+    isLoading,
+  };
+};

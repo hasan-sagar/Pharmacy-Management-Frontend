@@ -14,6 +14,9 @@ import SuppliersEditPage from "./pages/suppliers/SuppliersEditPage";
 import PurchasePage from "./pages/products/PurchasePage";
 import PurchaseFormPage from "./pages/products/PurchaseFormPage";
 import PurchaseEditPage from "./pages/products/PurchaseEditPage";
+import ProductInStockPage from "./pages/products/ProductInStockPage";
+import ProductOutOfStockPage from "./pages/products/ProductOutOfStockPage";
+import ProductExpirePage from "./pages/products/ProductExpirePage";
 
 export default function AppRoutes() {
   return (
@@ -113,6 +116,30 @@ export default function AppRoutes() {
           element={
             <Layout>
               <PurchaseEditPage />
+            </Layout>
+          }
+        />
+        <Route
+          path="/products/inStock"
+          element={
+            <Layout>
+              <ProductInStockPage />
+            </Layout>
+          }
+        />
+        <Route
+          path="/products/stockOut"
+          element={
+            <Layout>
+              <ProductOutOfStockPage />
+            </Layout>
+          }
+        />
+        <Route
+          path="/products/expired"
+          element={
+            <Layout>
+              <ProductExpirePage />
             </Layout>
           }
         />

@@ -1,8 +1,6 @@
 import {
-  BadgeDollarSign,
   ChevronDown,
   Handshake,
-  LineChart,
   ListCollapse,
   Package,
   Package2Icon,
@@ -60,13 +58,6 @@ export default function Sidebar() {
             <Store className="h-4 w-4" />
             Point of sale
           </NavLink>
-          <a
-            href="#"
-            className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
-          >
-            <LineChart className="h-4 w-4" />
-            Stocks
-          </a>
 
           <NavLink
             to="/category"
@@ -165,7 +156,7 @@ export default function Sidebar() {
               <CollapsibleContent>
                 <div className="ml-8">
                   <NavLink
-                    to="/products"
+                    to="/products/inStock"
                     className={({ isActive, isPending }) =>
                       isPending
                         ? "pending"
@@ -174,16 +165,16 @@ export default function Sidebar() {
                         : "flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
                     }
                   >
-                    All Products
+                    Stock in Products
                   </NavLink>
                   <a
-                    href="#"
+                    href="/products/expired"
                     className="dropdown-item block px-3 py-2 text-muted-foreground transition-all hover:text-primary"
                   >
                     Expired Products
                   </a>
                   <a
-                    href="#"
+                    href="/products/stockOut"
                     className="dropdown-item block px-3 py-2 text-muted-foreground transition-all hover:text-primary"
                   >
                     Stock out
@@ -192,13 +183,6 @@ export default function Sidebar() {
               </CollapsibleContent>
             </Collapsible>
           </div>
-          <a
-            href="#"
-            className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
-          >
-            <BadgeDollarSign className="h-4 w-4" />
-            Expense
-          </a>
         </nav>
       </div>
     </div>
