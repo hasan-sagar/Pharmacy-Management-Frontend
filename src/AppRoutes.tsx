@@ -11,6 +11,7 @@ import CategoryEditpage from "./pages/category/CategoryEditpage";
 import BrandsPage from "./pages/brands/BrandsPage";
 import BrandsEditpage from "./pages/brands/BrandsEditPage";
 import SuppliersPage from "./pages/suppliers/SuppliersPage";
+import SuppliersEditPage from "./pages/suppliers/SuppliersEditPage";
 
 export default function AppRoutes() {
   return (
@@ -85,6 +86,14 @@ export default function AppRoutes() {
           element={
             <Layout>
               <SuppliersPage />
+            </Layout>
+          }
+        />
+        <Route
+          path="/suppliers/:supplierId"
+          element={
+            <Layout>
+              <SuppliersEditPage />
             </Layout>
           }
         />

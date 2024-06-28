@@ -92,3 +92,61 @@ export const useDeleteSupplierHook = () => {
     deleteSuppliers,
   };
 };
+
+//get a single supplier
+export const useGetSingleSupplier = (supplierId: string) => {
+  const createGetSuppliersRequest = async () => {
+    const response = await axios.get(`${apiBaseUrl}/suppliers/${supplierId}`);
+    return response.data;
+  };
+
+  const {
+    data: supplierData,
+    error,
+    isLoading,
+  } = useQuery("getSingleSupplier", createGetSuppliersRequest);
+
+  if (error) {
+    toast.error(error.toString());
+  }
+
+  return {
+    supplierData,
+    isLoading,
+  };
+};
+
+//update single supplier
+export const useUpdateSingleSupplier = (supplierId: string) => {
+  const updateSupplierRequest = async (
+    supplierFormData: CreateSuppliersType
+  ) => {
+    const response = await axios.put(`${apiBaseUrl}/suppliers/${supplierId}`, {
+      name: supplierFormData.name,
+      phone: supplierFormData.phone,
+      companyName: supplierFormData.companyName,
+      address: supplierFormData.address,
+    });
+
+    return response.data;
+  };
+
+  const {
+    mutateAsync: updateSupplier,
+    isLoading,
+    error,
+    isSuccess,
+  } = useMutation(updateSupplierRequest);
+
+  if (error) {
+    toast.error(error.toString());
+  }
+
+  if (isSuccess) {
+    toast.success("Supplier updated");
+  }
+  return {
+    updateSupplier,
+    isLoading,
+  };
+};

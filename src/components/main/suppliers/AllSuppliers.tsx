@@ -38,6 +38,9 @@ export default function AllSuppliers({ suppliersData, isLoading }: Props) {
       <TableHeader>
         <TableRow>
           <TableHead>Name</TableHead>
+          <TableHead>Phone</TableHead>
+          <TableHead>Company</TableHead>
+          <TableHead>Address</TableHead>
           <TableHead>Action</TableHead>
         </TableRow>
       </TableHeader>
@@ -45,6 +48,11 @@ export default function AllSuppliers({ suppliersData, isLoading }: Props) {
         {suppliersData?.data.map((suppliers: SuppeliersType) => (
           <TableRow key={suppliers._id}>
             <TableCell className="font-medium">{suppliers.name}</TableCell>
+            <TableCell className="font-medium">{suppliers.phone}</TableCell>
+            <TableCell className="font-medium">
+              {suppliers.companyName}
+            </TableCell>
+            <TableCell className="font-medium">{suppliers.address}</TableCell>
             <TableCell className="flex flex-1 gap-4">
               <Trash
                 onClick={() => handleDelete(suppliers._id)}
