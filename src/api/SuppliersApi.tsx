@@ -150,3 +150,22 @@ export const useUpdateSingleSupplier = (supplierId: string) => {
     isLoading,
   };
 };
+
+// fetch all suppliers
+export const useGetAllSuppliers = () => {
+  const createSearchRequest = async () => {
+    const response = await axios.get(`${apiBaseUrl}/suppliers/get/all`);
+
+    return response.data;
+  };
+
+  const { data: suppliersData, isLoading } = useQuery(
+    "getAllSuppliers",
+    createSearchRequest
+  );
+
+  return {
+    suppliersData,
+    isLoading,
+  };
+};

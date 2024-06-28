@@ -20,9 +20,14 @@ import { NavLink } from "react-router-dom";
 
 export default function Sidebar() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isDropdownOpenPurchase, setIsDropdownOpenPurchase] = useState(false);
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  const toggleDropdownPurchase = () => {
+    setIsDropdownOpenPurchase(!isDropdownOpenPurchase);
   };
 
   return (
@@ -104,13 +109,46 @@ export default function Sidebar() {
             Suppliers
           </NavLink>
 
-          <a
-            href="#"
-            className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
-          >
-            <Package className="h-4 w-4" />
-            Purchase
-          </a>
+          <div>
+            <Collapsible
+              open={isDropdownOpenPurchase}
+              onOpenChange={setIsDropdownOpenPurchase}
+            >
+              <CollapsibleTrigger asChild>
+                <a
+                  href="#"
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
+                  onClick={toggleDropdownPurchase}
+                >
+                  <Package className="h-4 w-4" />
+                  Purchase
+                  <ChevronDown className="h-3 w-3" />
+                </a>
+              </CollapsibleTrigger>
+              <CollapsibleContent>
+                <div className="ml-8">
+                  <NavLink
+                    to="/product/purchase"
+                    className={({ isActive, isPending }) =>
+                      isPending
+                        ? "pending"
+                        : isActive
+                        ? "flex items-center gap-3 rounded-lg bg-muted px-3 py-2 text-primary transition-all hover:text-primary"
+                        : "flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
+                    }
+                  >
+                    All Purchase
+                  </NavLink>
+                  <a
+                    href="/purchase/create"
+                    className="dropdown-item block px-3 py-2 text-muted-foreground transition-all hover:text-primary"
+                  >
+                    Add Purchase
+                  </a>
+                </div>
+              </CollapsibleContent>
+            </Collapsible>
+          </div>
           <div>
             <Collapsible open={isDropdownOpen} onOpenChange={setIsDropdownOpen}>
               <CollapsibleTrigger asChild>

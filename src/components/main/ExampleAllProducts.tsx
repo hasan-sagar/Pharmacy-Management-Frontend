@@ -52,7 +52,7 @@ const invoices = [
   },
 ];
 
-export default function AllProducts() {
+export default function ExampleAllProducts() {
   return (
     <Table className="border">
       <TableHeader>

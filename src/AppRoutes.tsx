@@ -5,13 +5,15 @@ import Dashboard from "./pages/Dashboard";
 import PointOfSale from "./pages/PointOfSale";
 import LoginPage from "./pages/LoginPage";
 import UserProfilePage from "./pages/UserProfilePage";
-import ProductsPage from "./pages/ProductsPage";
 import CategoryPage from "./pages/category/CategoryPage";
 import CategoryEditpage from "./pages/category/CategoryEditpage";
 import BrandsPage from "./pages/brands/BrandsPage";
 import BrandsEditpage from "./pages/brands/BrandsEditPage";
 import SuppliersPage from "./pages/suppliers/SuppliersPage";
 import SuppliersEditPage from "./pages/suppliers/SuppliersEditPage";
+import PurchasePage from "./pages/products/PurchasePage";
+import PurchaseFormPage from "./pages/products/PurchaseFormPage";
+import PurchaseEditPage from "./pages/products/PurchaseEditPage";
 
 export default function AppRoutes() {
   return (
@@ -33,14 +35,7 @@ export default function AppRoutes() {
             </Layout>
           }
         />
-        <Route
-          path="/products"
-          element={
-            <Layout>
-              <ProductsPage />
-            </Layout>
-          }
-        />
+
         <Route
           path="/users"
           element={
@@ -97,6 +92,31 @@ export default function AppRoutes() {
             </Layout>
           }
         />
+        <Route
+          path="/product/purchase"
+          element={
+            <Layout>
+              <PurchasePage />
+            </Layout>
+          }
+        />
+        <Route
+          path="/purchase/create"
+          element={
+            <Layout>
+              <PurchaseFormPage />
+            </Layout>
+          }
+        />
+        <Route
+          path="/purchase/:purchaseId"
+          element={
+            <Layout>
+              <PurchaseEditPage />
+            </Layout>
+          }
+        />
+
         <Route path="/login" element={<LoginPage />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>

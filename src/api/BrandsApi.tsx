@@ -148,3 +148,22 @@ export const useUpdateSingleBrand = (brandId: string) => {
     isLoading,
   };
 };
+
+// fetch all brands
+export const useGetAllbrands = () => {
+  const createSearchRequest = async () => {
+    const response = await axios.get(`${apiBaseUrl}/brands/get/all`);
+
+    return response.data;
+  };
+
+  const { data: brandsData, isLoading } = useQuery(
+    "getAllBrands",
+    createSearchRequest
+  );
+
+  return {
+    brandsData,
+    isLoading,
+  };
+};

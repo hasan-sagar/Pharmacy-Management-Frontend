@@ -1,10 +1,7 @@
 import { Download, FileUp, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import ProductSearchBar from "@/components/main/ProductSearchBar";
-import AllProducts from "@/components/main/AllProducts";
-import ProductPaginator from "@/components/main/ProductPaginator";
 
-export default function ProductsPage() {
+export default function ExamplePage() {
   return (
     <main className="flex  flex-col gap-4 p-4 lg:gap-6 lg:p-6">
       <div className="flex items-center justify-between">
@@ -22,9 +19,9 @@ export default function ProductsPage() {
         </div>
       </div>
       <div className="flex flex-col gap-5">
-        <ProductSearchBar />
+        {/* <ProductSearchBar />
         <AllProducts />
-        <ProductPaginator />
+        <ProductPaginator /> */}
       </div>
     </main>
   );

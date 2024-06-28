@@ -152,3 +152,22 @@ export const useUpdateSingleCategory = (cateogryId: string) => {
     isLoading,
   };
 };
+
+// fetch all categories
+export const useGetAllCategory = () => {
+  const createSearchRequest = async () => {
+    const response = await axios.get(`${apiBaseUrl}/category/get/all`);
+
+    return response.data;
+  };
+
+  const { data: categoryData, isLoading } = useQuery(
+    "getAllCategories",
+    createSearchRequest
+  );
+
+  return {
+    categoryData,
+    isLoading,
+  };
+};
