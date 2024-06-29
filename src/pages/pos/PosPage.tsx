@@ -1,10 +1,15 @@
+import { useCreateOrderHook } from "@/api/OrdersApi";
 import { useSearchAndGetProductsInStock } from "@/api/ProductApi";
+import PlaceOrderButton, {
+  PlaceOrderFormData,
+} from "@/components/main/pos/PlaceOrderButton";
 import PosOrderSummary from "@/components/main/pos/PosOrderSummary";
 import PosProductCard from "@/components/main/pos/PosProductCard";
 import PosSearchBar, {
   ProductsSearchForm,
 } from "@/components/main/pos/PosSearchBar";
 import PurchasePaginator from "@/components/main/products/PurchasePaginator";
+import LoadSpinner from "@/components/shared/LoadSpinner";
 import { ShoppingBag } from "lucide-react";
 import { useRef, useState } from "react";
 
@@ -20,6 +25,8 @@ const PosPage = () => {
     const storedCartItems = localStorage.getItem("cart");
     return storedCartItems ? JSON.parse(storedCartItems) : [];
   });
+  //create order hook
+  const { createOrder, isLoading: isCreateOrdrLoading } = useCreateOrderHook();
   //total price state
   const totalPriceState = useRef(0);
 
@@ -99,6 +106,33 @@ const PosPage = () => {
     });
   };
 
+  // order create
+  const onCheckout = async (orderFormData: PlaceOrderFormData) => {
+    const checkoutData = {
+      cartItems: cart.map((cartItem) => ({
+        productId: cartItem._id,
+        name: cartItem.name,
+        quantity: cartItem.quantity,
+        price: cartItem.price,
+      })),
+      customerDetails: {
+        name: orderFormData.name,
+        phone: orderFormData.phone,
+        address: orderFormData.address,
+      },
+      totalAmount: totalPriceState.current,
+      totalItems: totalCartItemsNumber,
+    };
+
+    const data = await createOrder(checkoutData as any);
+
+    console.log(data);
+  };
+
+  if (isCreateOrdrLoading) {
+    return <LoadSpinner />;
+  }
+
   return (
     <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
       <div className="flex items-center gap-2">
@@ -133,12 +167,15 @@ const PosPage = () => {
         </div>
 
         {/* Calculation Section */}
-        <PosOrderSummary
-          totalCartItems={totalCartItemsNumber}
-          cartItems={cart}
-          removeCart={removeFromCart}
-          totalPrice={totalPriceState.current}
-        />
+        <div>
+          <PosOrderSummary
+            totalCartItems={totalCartItemsNumber}
+            cartItems={cart}
+            removeCart={removeFromCart}
+            totalPrice={totalPriceState.current}
+          />
+          <PlaceOrderButton onCheckout={onCheckout} />
+        </div>
       </div>
     </main>
   );

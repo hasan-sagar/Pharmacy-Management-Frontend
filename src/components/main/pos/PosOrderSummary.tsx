@@ -22,7 +22,10 @@ export default function PosOrderSummary({
         <div className="my-4"></div>
         {/* order items */}
         {cartItems?.map((cart: any) => (
-          <div className="flex flex-row items-center justify-between gap-2">
+          <div
+            className="flex flex-row items-center justify-between gap-2"
+            key={cart._id}
+          >
             <span className="flex items-center gap-2 font-medium">
               <Badge variant="outline" className="mr-2">
                 {cart.quantity}
@@ -43,7 +46,7 @@ export default function PosOrderSummary({
           </div>
         ))}
         <Separator className="mt-4" />
-        <div className="mt-4 text-end font-medium">
+        <div className="mt-4  font-medium">
           <p>Total Items: {totalCartItems}</p>
           <p>Total Price: ৳ {totalPrice}</p>
         </div>
