@@ -241,7 +241,7 @@ export const useSearchAndGetProductsExpired = (
   };
 
   const { data: productsData, isLoading } = useQuery(
-    ["searchAndGetProductsInStock", searchState],
+    ["searchAndGetProductsExpired", searchState],
     createSearchRequest
   );
 

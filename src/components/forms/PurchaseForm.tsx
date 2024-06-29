@@ -35,6 +35,7 @@ import { useGetAllbrands } from "@/api/BrandsApi";
 import { BrandsType } from "@/types/brand-type";
 import { useGetAllSuppliers } from "@/api/SuppliersApi";
 import { SuppeliersType } from "@/types/suppliers-type";
+import LoadSpinner from "../shared/LoadSpinner";
 
 type Props = {
   onSave: (purchaseFormData: PurchaseFormData) => void;
@@ -74,11 +75,11 @@ export function PurchaseForm({ isLoading, onSave }: Props) {
   const [openSupplier, setOpenSupplier] = useState(false);
 
   //get all category hook
-  const { categoryData } = useGetAllCategory();
+  const { categoryData, isLoading: isCategoryLoading } = useGetAllCategory();
   //get all brands hook
-  const { brandsData } = useGetAllbrands();
+  const { brandsData, isLoading: isBrandLoading } = useGetAllbrands();
   //get all suppliers hook
-  const { suppliersData } = useGetAllSuppliers();
+  const { suppliersData, isLoading: isSupplierLoading } = useGetAllSuppliers();
 
   //form
   const form = useForm<PurchaseFormData>({
@@ -118,9 +119,9 @@ export function PurchaseForm({ isLoading, onSave }: Props) {
     }
   };
 
-  // useEffect(() => {
-  //   navigate(0);
-  // }, [onSave, form]);
+  if (isBrandLoading || isCategoryLoading || isSupplierLoading) {
+    return <LoadSpinner />;
+  }
 
   return (
     <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
@@ -177,7 +178,7 @@ export function PurchaseForm({ isLoading, onSave }: Props) {
                             className="w-full justify-between"
                           >
                             {field.value
-                              ? categoryData.find(
+                              ? categoryData?.find(
                                   (category: CategoryType) =>
                                     category._id === field.value
                                 )?.name
@@ -238,7 +239,7 @@ export function PurchaseForm({ isLoading, onSave }: Props) {
                             className="w-full justify-between"
                           >
                             {field.value
-                              ? brandsData.find(
+                              ? brandsData?.find(
                                   (brand: BrandsType) =>
                                     brand._id === field.value
                                 )?.name
@@ -297,7 +298,7 @@ export function PurchaseForm({ isLoading, onSave }: Props) {
                             className="w-full justify-between"
                           >
                             {field.value
-                              ? suppliersData.find(
+                              ? suppliersData?.find(
                                   (supplier: SuppeliersType) =>
                                     supplier._id === field.value
                                 )?.name
