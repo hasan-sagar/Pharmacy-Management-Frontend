@@ -2,7 +2,6 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import Layout from "./layouts/Layout";
 
 import Dashboard from "./pages/Dashboard";
-import PointOfSale from "./pages/PointOfSale";
 import LoginPage from "./pages/LoginPage";
 import UserProfilePage from "./pages/UserProfilePage";
 import CategoryPage from "./pages/category/CategoryPage";
@@ -17,6 +16,7 @@ import PurchaseEditPage from "./pages/products/PurchaseEditPage";
 import ProductInStockPage from "./pages/products/ProductInStockPage";
 import ProductOutOfStockPage from "./pages/products/ProductOutOfStockPage";
 import ProductExpirePage from "./pages/products/ProductExpirePage";
+import PosPage from "./pages/pos/PosPage";
 
 export default function AppRoutes() {
   return (
@@ -34,7 +34,7 @@ export default function AppRoutes() {
           path="/pos"
           element={
             <Layout>
-              <PointOfSale />
+              <PosPage />
             </Layout>
           }
         />

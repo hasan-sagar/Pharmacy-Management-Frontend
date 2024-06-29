@@ -1,0 +1,94 @@
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
+import { Delete, Search } from "lucide-react";
+
+import { useEffect } from "react";
+import { Input } from "../../ui/input";
+import { Button } from "../../ui/button";
+
+const formSchema = z.object({
+  searchQueryKeywords: z.string({
+    required_error: "Restaurant name is required",
+  }),
+});
+
+export type ProductsSearchForm = z.infer<typeof formSchema>;
+
+type Props = {
+  onSubmit: (formData: ProductsSearchForm) => void;
+  placeHolder: string;
+  //   onReset?: () => void;
+  searchQueryKeywords?: string;
+};
+
+const PosSearchBar = ({
+  onSubmit,
+  placeHolder,
+  searchQueryKeywords,
+}: Props) => {
+  const form = useForm<ProductsSearchForm>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      searchQueryKeywords,
+    },
+  });
+
+  //reset
+  const handleReset = () => {
+    form.reset({
+      searchQueryKeywords: "",
+    });
+  };
+
+  useEffect(() => {
+    form.reset({ searchQueryKeywords });
+  }, [form, searchQueryKeywords]);
+
+  return (
+    <Form {...form}>
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className={`flex items-center gap-3 justify-between flex-row  ${
+          form.formState.errors.searchQueryKeywords && "border-red-500"
+        }`}
+      >
+        <FormField
+          control={form.control}
+          name="searchQueryKeywords"
+          render={({ field }) => (
+            <FormItem className="flex-1">
+              <FormControl>
+                <Input {...field} placeholder={placeHolder} />
+              </FormControl>
+            </FormItem>
+          )}
+        />
+
+        <div>
+          <Button
+            size={"sm"}
+            onClick={handleReset}
+            type="button"
+            variant="destructive"
+            className="rounded-sm  text-white me-1"
+          >
+            <Delete />
+          </Button>
+
+          <Button
+            variant={"default"}
+            size={"sm"}
+            type="submit"
+            className="rounded-sm"
+          >
+            <Search />
+          </Button>
+        </div>
+      </form>
+    </Form>
+  );
+};
+
+export default PosSearchBar;
