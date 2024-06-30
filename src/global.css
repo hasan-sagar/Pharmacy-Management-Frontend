@@ -16,6 +16,12 @@ body {
   background-position: center;
 }
 
+@media print {
+  .no-print {
+    display: none;
+  }
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

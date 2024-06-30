@@ -17,6 +17,8 @@ import ProductInStockPage from "./pages/products/ProductInStockPage";
 import ProductOutOfStockPage from "./pages/products/ProductOutOfStockPage";
 import ProductExpirePage from "./pages/products/ProductExpirePage";
 import PosPage from "./pages/pos/PosPage";
+import SalesPage from "./pages/sales/SalesPage";
+import InvoicePage from "./pages/invoice/InvoicePage";
 
 export default function AppRoutes() {
   return (
@@ -35,6 +37,15 @@ export default function AppRoutes() {
           element={
             <Layout>
               <PosPage />
+            </Layout>
+          }
+        />
+        <Route path="/invoice/:invoiceId" element={<InvoicePage />} />
+        <Route
+          path="/sales"
+          element={
+            <Layout>
+              <SalesPage />
             </Layout>
           }
         />

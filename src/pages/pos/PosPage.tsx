@@ -105,10 +105,16 @@ const PosPage = () => {
       return updatedCartItems;
     });
   };
+  //generate invoice id
+  const generateInvoiceNo = () => {
+    const randomComponent = Math.floor(Math.random() * 1000 * 9999);
+    return `INV-${randomComponent}`;
+  };
 
   // order create
   const onCheckout = async (orderFormData: PlaceOrderFormData) => {
     const checkoutData = {
+      invoiceNo: generateInvoiceNo(),
       cartItems: cart.map((cartItem) => ({
         productId: cartItem._id,
         name: cartItem.name,
@@ -136,8 +142,8 @@ const PosPage = () => {
   return (
     <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
       <div className="flex items-center gap-2">
-        <ShoppingBag className="text-green-600" />
-        <h1 className="text-lg font-semibold md:text-2xl text-green-600">
+        <ShoppingBag size={20} />
+        <h1 className="text-lg font-semibold md:text-2xl ">
           Point Of Sale Page
         </h1>
       </div>
