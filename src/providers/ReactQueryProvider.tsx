@@ -1,4 +1,3 @@
-"use client";
 import axios from "axios";
 import { useEffect } from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
@@ -32,6 +31,7 @@ function ReactQueryProvider({ children }: Props) {
 
           // acces denied
           window.location.href = "/login";
+          localStorage.removeItem("token");
         }
         return Promise.reject(error);
       }
