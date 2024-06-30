@@ -1,4 +1,4 @@
-import { Rotate3D } from "lucide-react";
+import { LoaderCircle } from "lucide-react";
 
 export default function LoadSpinner() {
   return (
@@ -7,7 +7,7 @@ export default function LoadSpinner() {
     // </div>
     <div className="flex flex-col justify-center items-center h-full bg-gray-50">
       <div className="flex justify-center items-center">
-        <Rotate3D color="#7C3AED" className="mr-2 h-10 w-10 animate-spin" />
+        <LoaderCircle color="#7C3AED" className="mr-2 h-8 w-8 animate-spin" />
       </div>
       <p className="text-gray-700 mt-4 animate-ping">Loading...</p>
     </div>
