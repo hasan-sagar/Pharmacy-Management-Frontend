@@ -11,7 +11,6 @@ import { Button } from "../ui/button";
 import {
   ChevronDown,
   Handshake,
-  ListChecks,
   ListCollapse,
   Menu,
   Package2Icon,
@@ -20,7 +19,7 @@ import {
   WalletCards,
 } from "lucide-react";
 
-import { CircleUser, LineChart, Package, Package2 } from "lucide-react";
+import { CircleUser, LineChart, Package } from "lucide-react";
 import { useState } from "react";
 import {
   Collapsible,
