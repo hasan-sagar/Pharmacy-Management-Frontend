@@ -1,30 +1,29 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Pharmacy Management System - POS
 
-Currently, two official plugins are available:
+## Project Intro
+Point of sale (POS) system for managing pharmacy product entries. This system facilitates the purchase of products from suppliers and tracks sales to customers.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+-   **Product Management:** Add, update, and delete pharmacy products.
+-   **Supplier Management:** Manage supplier information and track purchases.
+-   **Inventory Management:** Monitor stock levels and low inventory.
+-   **Sales Tracking:** Track sales transactions.
+-   **User Authentication:** Secure login and with google authentication.
 
-- Configure the top-level `parserOptions` property like this:
+## Prerequisite
+- Nodejs v18+
+- NestJs v10
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Technologies
+
+-   **Frontend:** React.js with shadcn UI library and TailwindCss
+-   **Backend:**  NestJs
+-   **Database:** MongoDB
+-   **Charts and Reports:** Recharts for visualizing sales transactions.
+
+
+
